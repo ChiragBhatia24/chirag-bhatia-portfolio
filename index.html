@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chirag Bhatia — Data Engineer</title>
+<meta name="description" content="Chirag Bhatia, Data Engineer in Pune — Azure Databricks, PySpark, Delta Lake, ADF. Portfolio, experience, projects and certifications.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #10141b;
+    --bg-soft: #141a23;
+    --surface: #1a2029;
+    --surface-2: #1f2632;
+    --border: #2a3140;
+    --border-soft: #232a37;
+
+    --text: #edeff2;
+    --text-soft: #aab2c0;
+    --text-mute: #6e7689;
+
+    --bronze: #c9824f;
+    --bronze-soft: rgba(201,130,79,0.14);
+    --bronze-line: rgba(201,130,79,0.35);
+
+    --silver: #b9c2cf;
+    --silver-soft: rgba(185,194,207,0.12);
+    --silver-line: rgba(185,194,207,0.32);
+
+    --gold: #e8b84b;
+    --gold-soft: rgba(232,184,75,0.14);
+    --gold-line: rgba(232,184,75,0.38);
+
+    --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+    --font-body: "Inter", "Segoe UI", sans-serif;
+    --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+    --max: 1080px;
+    --pad: clamp(20px, 5vw, 64px);
+    --radius: 14px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *,*::before,*::after{
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,svg{ display:block; max-width:100%; }
+  a{ color: inherit; }
+
+  .container{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+
+  /* Skip link */
+  .skip-link{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background: var(--gold);
+    color:#1a1304;
+    padding:10px 16px;
+    border-radius: 0 0 8px 0;
+    font-family: var(--font-mono);
+    font-weight:600;
+    z-index: 1000;
+  }
+  .skip-link:focus{ left:0; }
+
+  /* Focus visibility */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ---------- Header / Nav ---------- */
+  header.site{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 100;
+    background: rgba(16,20,27,0.78);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 68px;
+  }
+  .brand{
+    font-family: var(--font-mono);
+    font-weight:600;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand .mark{
+    width: 30px; height:30px;
+    border-radius: 8px;
+    display:grid;
+    place-items:center;
+    background: linear-gradient(135deg, var(--bronze), var(--gold));
+    color:#1a1304;
+    font-weight:700;
+    font-size: 0.78rem;
+  }
+  nav.primary ul{
+    list-style:none;
+    display:flex;
+    gap: 28px;
+    margin:0; padding:0;
+  }
+  nav.primary a{
+    text-decoration:none;
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    font-weight:500;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  nav.primary a:hover,
+  nav.primary a.active{
+    color: var(--text);
+    border-color: var(--gold);
+  }
+  .nav-cta{
+    display:none;
+  }
+  @media (min-width: 760px){
+    .nav-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-decoration:none;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-weight:600;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 8px 20px var(--gold-soft); }
+  }
+
+  .nav-toggle{
+    display:inline-flex;
+    background:none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width:40px; height:40px;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .nav-toggle span{
+    display:block;
+    width: 18px; height:2px;
+    background: var(--text);
+    position:relative;
+  }
+  .nav-toggle span::before,
+  .nav-toggle span::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:18px; height:2px;
+    background: var(--text);
+  }
+  .nav-toggle span::before{ top:-6px; }
+  .nav-toggle span::after{ top:6px; }
+
+  @media (min-width: 760px){
+    .nav-toggle{ display:none; }
+  }
+  nav.primary{
+    display:none;
+  }
+  nav.primary.is-open{
+    display:block;
+    position:absolute;
+    top:68px; left:0; right:0;
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 8px var(--pad) 24px;
+  }
+  nav.primary.is-open ul{
+    flex-direction:column;
+    gap:4px;
+  }
+  nav.primary.is-open a{
+    display:block;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 760px){
+    nav.primary{ display:block; position:static; background:none; border:none; padding:0; }
+    nav.primary ul{ flex-direction:row; }
+    nav.primary a{ padding:6px 2px; border-bottom: 2px solid transparent; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding-top: calc(68px + clamp(48px,10vh,110px));
+    padding-bottom: clamp(48px,8vh,90px);
+    overflow:hidden;
+  }
+  .hero-strata{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    opacity:0.55;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:1;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin: 0 0 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--gold-line);
+  }
+  h1{
+    font-family: var(--font-display);
+    font-weight:700;
+    font-size: clamp(2.5rem, 4vw + 1rem, 4.2rem);
+    line-height: 1.04;
+    margin: 0 0 18px;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede{
+    max-width: 620px;
+    font-size: clamp(1.05rem, 1vw + 0.9rem, 1.25rem);
+    color: var(--text-soft);
+    margin: 0 0 36px;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-bottom: 56px;
+  }
+  .btn{
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight:600;
+    text-decoration:none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{
+    background: var(--gold);
+    color: #1a1304;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px var(--gold-soft); }
+  .btn-ghost{
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover{ border-color: var(--silver-line); transform: translateY(-2px); }
+
+  .stat-row{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    overflow:hidden;
+    max-width: 760px;
+  }
+  .stat{
+    background: var(--bg-soft);
+    padding: 22px 20px;
+  }
+  .stat .num{
+    font-family: var(--font-mono);
+    font-size: 1.7rem;
+    font-weight:600;
+    color: var(--gold);
+    display:block;
+    margin-bottom: 4px;
+  }
+  .stat .label{
+    font-size: 0.82rem;
+    color: var(--text-mute);
+  }
+
+  /* ---------- Section shells ---------- */
+  section{
+    padding: clamp(56px, 9vh, 110px) 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .section-head{
+    margin-bottom: 44px;
+    max-width: 640px;
+  }
+  .section-head h2{
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 2vw + 1rem, 2.4rem);
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .section-head p{
+    color: var(--text-soft);
+    margin:0;
+  }
+
+  .reveal{
+    opacity:0;
+    transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; }
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 48px;
+    align-items:start;
+  }
+  @media (max-width: 760px){
+    .about-grid{ grid-template-columns: 1fr; }
+  }
+  .about-grid p{
+    color: var(--text-soft);
+    font-size: 1.05rem;
+    margin: 0 0 18px;
+  }
+  .about-meta{
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    background: var(--bg-soft);
+  }
+  .about-meta dl{ margin:0; }
+  .about-meta div{
+    display:flex;
+    justify-content:space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.92rem;
+  }
+  .about-meta div:last-child{ border-bottom:none; }
+  .about-meta dt{ color: var(--text-mute); }
+  .about-meta dd{ margin:0; text-align:right; color: var(--text); font-family: var(--font-mono); font-size: 0.85rem; }
+
+  /* ---------- Experience / Layers ---------- */
+  .role-head{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap: 12px;
+    align-items:baseline;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .role-head h3{
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    margin: 0 0 4px;
+  }
+  .role-head .org{ color: var(--text-soft); font-size: 0.95rem; }
+  .role-head time{
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-mute);
+  }
+
+  .layers{
+    display:flex;
+    flex-direction:column;
+    gap: 0;
+    border-left: 2px solid var(--border-soft);
+    margin-left: 6px;
+  }
+  .layer{
+    position:relative;
+    padding: 0 0 40px 32px;
+  }
+  .layer:last-child{ padding-bottom: 4px; }
+  .layer::before{
+    content:"";
+    position:absolute;
+    left:-7px; top:4px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background: var(--bg);
+    border: 2px solid var(--dot, var(--gold));
+  }
+  .layer.bronze{ --dot: var(--bronze); }
+  .layer.silver{ --dot: var(--silver); }
+  .layer.gold{ --dot: var(--gold); }
+
+  .layer-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+    color: var(--dot);
+    background: color-mix(in srgb, var(--dot) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--dot) 38%, transparent);
+  }
+  .layer h4{
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .layer ul{
+    margin:0; padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .layer li{
+    color: var(--text-soft);
+    font-size: 0.97rem;
+    padding-left: 18px;
+    position:relative;
+  }
+  .layer li::before{
+    content:"";
+    position:absolute;
+    left:0; top:0.6em;
+    width:6px; height:6px;
+    background: var(--dot);
+    border-radius:1px;
+  }
+  .layer strong{ color: var(--text); font-weight:600; }
+
+  /* ---------- Skills ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 22px;
+  }
+  .skill-card{
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    background: var(--bg-soft);
+  }
+  .skill-card h3{
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin: 0 0 14px;
+  }
+  .pill-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 8px;
+  }
+  .pill{
+    font-size: 0.82rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    background: var(--surface);
+    transition: border-color .2s ease, color .2s ease;
+  }
+  .skill-card:hover .pill{ }
+  .pill:hover{ border-color: var(--gold-line); color: var(--text); }
+
+  /* ---------- Projects ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 22px;
+  }
+  .project-card{
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: var(--bg-soft);
+    display:flex;
+    flex-direction:column;
+    gap: 14px;
+  }
+  .project-card .ptag{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+  .project-card h3{
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    margin: 0;
+  }
+  .project-card ul{
+    margin:0; padding:0;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .project-card li{
+    color: var(--text-soft);
+    font-size: 0.93rem;
+    padding-left: 16px;
+    position:relative;
+  }
+  .project-card li::before{
+    content:"";
+    position:absolute; left:0; top:0.6em;
+    width:5px; height:5px;
+    background: var(--silver);
+    border-radius:50%;
+  }
+
+  /* ---------- Certifications ---------- */
+  .cert-list{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 16px;
+  }
+  .cert{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    background: var(--bg-soft);
+  }
+  .cert .badge{
+    width: 38px; height:38px;
+    border-radius: 10px;
+    background: var(--surface-2);
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+  }
+  .cert .badge svg{ width:18px; height:18px; }
+  .cert h3{
+    font-size: 0.95rem;
+    margin: 0 0 3px;
+    font-weight:600;
+  }
+  .cert time{
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-mute);
+  }
+
+  /* ---------- Education ---------- */
+  .edu-card{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px;
+    background: var(--bg-soft);
+  }
+  .edu-card h3{ margin:0 0 6px; font-family: var(--font-display); font-size:1.1rem; }
+  .edu-card .school{ color: var(--text-soft); font-size:0.93rem; }
+  .edu-card .score{
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    color: var(--gold);
+    font-weight:600;
+    align-self:center;
+  }
+  .edu-card .score-label{
+    font-size:0.72rem;
+    color: var(--text-mute);
+    text-align:center;
+    display:block;
+    margin-top:2px;
+  }
+
+  /* ---------- Contact / Footer ---------- */
+  footer.site{
+    border-top: 1px solid var(--border-soft);
+    padding: clamp(56px,9vh,100px) 0 36px;
+  }
+  .contact-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap: 28px;
+  }
+  footer.site h2{
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem,3vw+1rem,2.8rem);
+    margin:0;
+    max-width: 560px;
+  }
+  footer.site p.lede{
+    color: var(--text-soft);
+    max-width: 480px;
+    margin:0;
+  }
+  .contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 14px;
+  }
+  .contact-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: 0.92rem;
+    color: var(--text);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .contact-link:hover{ border-color: var(--gold-line); transform: translateY(-2px); }
+  .contact-link svg{ width:16px; height:16px; }
+
+  .foot-bottom{
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-soft);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-mute);
+  }
+
+  ::selection{ background: var(--gold-soft); color: var(--text); }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="container nav-inner">
+    <a class="brand" href="#top">
+      <span class="mark" aria-hidden="true">CB</span>
+      Chirag Bhatia
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle menu">
+      <span></span>
+    </button>
+
+    <nav class="primary" id="primaryNav" aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <a class="nav-cta" href="mailto:chiragbhatia024@gmail.com">Email me</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top" aria-label="Introduction">
+    <svg class="hero-strata" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="bandBronze" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#c9824f" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#c9824f" stop-opacity="0.5"/>
+          <stop offset="1" stop-color="#c9824f" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="bandSilver" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#b9c2cf" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#b9c2cf" stop-opacity="0.45"/>
+          <stop offset="1" stop-color="#b9c2cf" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="bandGold" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#e8b84b" stop-opacity="0"/>
+          <stop offset="0.5" stop-color="#e8b84b" stop-opacity="0.55"/>
+          <stop offset="1" stop-color="#e8b84b" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect x="650" y="120" width="550" height="3" fill="url(#bandBronze)"/>
+      <rect x="600" y="160" width="600" height="2" fill="url(#bandBronze)"/>
+      <rect x="700" y="220" width="500" height="3" fill="url(#bandSilver)"/>
+      <rect x="640" y="265" width="560" height="2" fill="url(#bandSilver)"/>
+      <rect x="660" y="320" width="540" height="2" fill="url(#bandSilver)"/>
+      <rect x="720" y="380" width="480" height="3" fill="url(#bandGold)"/>
+      <rect x="680" y="430" width="520" height="2" fill="url(#bandGold)"/>
+      <rect x="700" y="475" width="500" height="2" fill="url(#bandGold)"/>
+    </svg>
+
+    <div class="container hero-inner">
+      <p class="eyebrow">Data Engineer · Pune, India</p>
+      <h1>Chirag Bhatia</h1>
+      <p class="lede">I build cloud-native data pipelines that turn raw, messy data into something teams can actually trust — using PySpark, Azure Databricks, and Delta Lake.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=chiragbhatia024@gmail.com" target="_blank">Email me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/chirag-bhatia-490a78220/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+      </div>
+
+      <div class="stat-row" role="group" aria-label="Key achievements">
+        <div class="stat">
+          <span class="num">99%</span>
+          <span class="label">data accuracy on 1M+ record ingestion jobs</span>
+        </div>
+        <div class="stat">
+          <span class="num">40%</span>
+          <span class="label">faster queries after Delta Lake optimization</span>
+        </div>
+        <div class="stat">
+          <span class="num">70%</span>
+          <span class="label">less pipeline downtime</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" aria-labelledby="about-h">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="eyebrow">About</p>
+          <h2 id="about-h" style="font-family:var(--font-display);font-size:clamp(1.7rem,2vw+1rem,2.4rem);margin:0 0 20px;">A pipeline that doesn't wake anyone up at 2 a.m.</h2>
+          <p>I'm a data engineer working mostly in Azure Databricks and PySpark — ingesting raw data, shaping it through Delta Lake's Bronze, Silver, and Gold layers, and handing analytics teams something clean and fast to build on.</p>
+          <p>I care about query performance, SLA reliability, and making sure the dashboard never becomes the bottleneck. I also keep an eye on the broader ecosystem — GCP fundamentals, Snowflake, and modern warehousing patterns — so the Azure-first work stays grounded in how the wider industry builds data platforms.</p>
+        </div>
+        <div class="about-meta reveal">
+          <dl>
+            <div><dt>Role</dt><dd>Associate Software Engineer</dd></div>
+            <div><dt>Focus</dt><dd>Data Engineering</dd></div>
+            <div><dt>Company</dt><dd>Hexaware Technologies</dd></div>
+            <div><dt>Based in</dt><dd>Pune, India</dd></div>
+            <div><dt>Education</dt><dd>B.Tech, IT — JECRC</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Experience</p>
+        <h2 id="exp-h">Where the data actually moves</h2>
+        <p>Laid out the way I think about it on the job — by the medallion layer each piece of work touches: raw ingestion, transformation and reliability, then curated, business-ready data.</p>
+      </div>
+
+      <div class="role-head reveal">
+        <div>
+          <h3>Associate Software Engineer — Data Engineering</h3>
+          <div class="org">Hexaware Technologies, Pune</div>
+        </div>
+        <time>Dec 2024 — Present</time>
+      </div>
+
+      <div class="layers reveal">
+        <div class="layer bronze">
+          <span class="layer-tag">Bronze · Raw Ingestion</span>
+          <ul>
+            <li>Built PySpark ingestion jobs on Azure Databricks that process <strong>1M+ records</strong> from raw CSV sources, holding <strong>99% data accuracy</strong> while pushing throughput well beyond the legacy batch process.</li>
+            <li>Orchestrated multi-activity ADF pipelines — parameterized datasets, linked services, trigger-based scheduling — so daily and weekly loads run fully automated.</li>
+          </ul>
+        </div>
+
+        <div class="layer silver">
+          <span class="layer-tag">Silver · Transform &amp; Reliability</span>
+          <ul>
+            <li>Designed the Delta Lake table architecture across Bronze, Silver, and Gold layers, applying partitioning and Z-ordering to cut query execution time by <strong>40%</strong> and storage I/O by <strong>30%</strong>.</li>
+            <li>Closed <strong>100%</strong> of pipeline SLA breaches on time by building proactive monitoring, alerting, and failure-recovery logic into ADF — taking <strong>70%</strong> off total downtime.</li>
+          </ul>
+        </div>
+
+        <div class="layer gold">
+          <span class="layer-tag">Gold · Curated &amp; Business-Ready</span>
+          <ul>
+            <li>Wrote SQL transformations — window functions, CTEs, multi-table joins — to build curated analytical datasets, cutting BI query time by <strong>35%</strong>.</li>
+            <li>Worked with analytics teams to define data contracts and schema standards, so downstream Power BI dashboards always ran on clean, latency-optimized data.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" aria-labelledby="skills-h">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Skills</p>
+        <h2 id="skills-h">Stack &amp; tools</h2>
+        <p>The toolkit I reach for most, grouped by where it sits in a typical pipeline.</p>
+      </div>
+
+      <div class="skill-groups reveal">
+        <div class="skill-card">
+          <h3>Big Data</h3>
+          <div class="pill-row">
+            <span class="pill">PySpark</span><span class="pill">SparkSQL</span><span class="pill">Hadoop fundamentals</span><span class="pill">Hive concepts</span><span class="pill">Delta Lake</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Data Engineering &amp; ETL</h3>
+          <div class="pill-row">
+            <span class="pill">Azure Databricks</span><span class="pill">ADF</span><span class="pill">ETL Pipelines</span><span class="pill">Medallion Architecture</span><span class="pill">Incremental Processing</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Cloud Platforms</h3>
+          <div class="pill-row">
+            <span class="pill">Azure (ADF, ADLS Gen2, Databricks)</span><span class="pill">GCP (BigQuery, Cloud Storage, Dataproc)</span><span class="pill">Snowflake</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Programming</h3>
+          <div class="pill-row">
+            <span class="pill">Python</span><span class="pill">Bash</span><span class="pill">SQL</span><span class="pill">Core Java</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Data Warehousing</h3>
+          <div class="pill-row">
+            <span class="pill">Star Schema</span><span class="pill">Data Modelling</span><span class="pill">Partitioning</span><span class="pill">Query Optimization</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Orchestration &amp; Monitoring</h3>
+          <div class="pill-row">
+            <span class="pill">ADF Triggers</span><span class="pill">CI/CD</span><span class="pill">Pipeline Monitoring</span><span class="pill">Alerting</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Tools</h3>
+          <div class="pill-row">
+            <span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">Power BI</span><span class="pill">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" aria-labelledby="proj-h">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Projects</p>
+        <h2 id="proj-h">Things I built on my own time</h2>
+      </div>
+
+      <div class="project-grid reveal">
+        <article class="project-card">
+          <span class="ptag">Personal Project · Azure</span>
+          <h3>Cloud Data Lakehouse</h3>
+          <ul>
+            <li>Architected a Lakehouse on Azure using ADLS Gen2 + Databricks + Delta Lake in the medallion pattern, with ingestion automated through ADF-triggered pipelines.</li>
+            <li>Used schema evolution, MERGE upserts, and time-travel queries to keep every layer reliable and auditable.</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <span class="ptag">Microsoft Engage Mentee 2022 · Python, Flask, ML</span>
+          <h3>Face Recognition Web App</h3>
+          <ul>
+            <li>Selected competitively for the Microsoft Engage Mentee programme, gaining industry mentorship and an interview track into Microsoft's internship pipeline.</li>
+            <li>Built a Flask web app in Python with a binary gender-classification model running on live image input, as the programme's final deliverable.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" aria-labelledby="cert-h">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Certifications</p>
+        <h2 id="cert-h">Certifications</h2>
+      </div>
+
+      <div class="cert-list reveal">
+        <div class="cert">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e8b84b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+          </span>
+          <div>
+            <h3>Databricks Certified Data Engineer Associate</h3>
+            <time>April 2026</time>
+          </div>
+        </div>
+        <div class="cert">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#b9c2cf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+          </span>
+          <div>
+            <h3>Microsoft Certified: Azure Fundamentals (AZ-900)</h3>
+            <time>January 2025</time>
+          </div>
+        </div>
+        <div class="cert">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c9824f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>
+          </span>
+          <div>
+            <h3>PCEP — Certified Entry-Level Python Programmer</h3>
+            <time>December 2024</time>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" aria-labelledby="edu-h">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Education</p>
+        <h2 id="edu-h">Education</h2>
+      </div>
+      <div class="edu-card reveal">
+        <div>
+          <h3>B.Tech, Information Technology</h3>
+          <div class="school">Jaipur Engineering College and Research Centre · 2024</div>
+        </div>
+        <div>
+          <span class="score">89%</span>
+          <span class="score-label">aggregate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CONTACT / FOOTER -->
+<footer class="site" id="contact" aria-labelledby="contact-h">
+  <div class="container">
+    <div class="contact-wrap reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-h">Let's talk data.</h2>
+      <p class="lede">Open to data engineering roles across India. I usually reply within a day.</p>
+
+      <div class="contact-links">
+        <a class="contact-link"
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=chiragbhatia024@gmail.com&su=Portfolio%20Inquiry"
+  target="_blank"
+  rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          chiragbhatia024@gmail.com
+        </a>
+        <a class="contact-link" href="tel:+917412981805">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+          +91-7412981805
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/chirag-bhatia-490a78220/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/chirabhatia
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 2026 Chirag Bhatia</span>
+      <span>Built with Azure, PySpark &amp; a bit of patience</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primaryNav');
+
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll-spy
+  var sections = document.querySelectorAll('main section[id], header#top, footer#contact');
+  var navLinks = nav.querySelectorAll('a');
+
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.getAttribute('id');
+        navLinks.forEach(function(l){
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+  document.querySelectorAll('main section[id]').forEach(function(s){ spy.observe(s); });
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  var ro = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(function(el){ ro.observe(el); });
+})();
+</script>
+
+</body>
+</html>
